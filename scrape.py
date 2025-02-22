@@ -4,16 +4,23 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
+import os
 
 # Automatically install ChromeDriver if it's not present
 chromedriver_autoinstaller.install()
+
+# Check if chromedriver is installed correctly
+chromedriver_path = os.path.join(os.getcwd(), "chromedriver")
+if not os.path.exists(chromedriver_path):
+    print("Chromedriver is not installed correctly.")
+    exit(1)
 
 # Set up Chrome options to run headlessly
 chrome_options = Options()
 chrome_options.add_argument("--headless")  # Run in headless mode (no GUI)
 
 # Set up the WebDriver
-service = Service("chromedriver")
+service = Service(chromedriver_path)
 driver = webdriver.Chrome(service=service, options=chrome_options)
 
 def scrape_website():
