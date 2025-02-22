@@ -1,12 +1,8 @@
 name: Run Selenium Script
 
 on:
-  push:
-    branches:
-      - main  # or your desired branch
-  pull_request:
-    branches:
-      - main  # or your desired branch
+  # You can also manually trigger it if needed (optional)
+  workflow_dispatch:
 
 jobs:
   run_selenium:
