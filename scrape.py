@@ -6,7 +6,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
 import os
 
-# Automatically install ChromeDriver if it's not present
+# Automatically install the correct version of Chromedriver
 chromedriver_autoinstaller.install()
 
 # Path to the Chrome binary (needed for headless Chrome)
@@ -20,7 +20,7 @@ chrome_options.add_argument("--disable-dev-shm-usage")  # Needed for some enviro
 chrome_options.binary_location = chrome_binary_path  # Explicitly set Chrome binary location
 
 # Set up the WebDriver
-service = Service("chromedriver")
+service = Service("chromedriver")  # This should find the installed chromedriver automatically
 driver = webdriver.Chrome(service=service, options=chrome_options)
 
 def scrape_website():
