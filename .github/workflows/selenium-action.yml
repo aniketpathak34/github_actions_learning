@@ -1,0 +1,42 @@
+name: Run Selenium Script
+
+on:
+  push:
+    branches:
+      - main  # or your desired branch
+  pull_request:
+    branches:
+      - main  # or your desired branch
+
+jobs:
+  run_selenium:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Check out the repository
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      # Step 2: Set up Python
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'  # You can change the Python version as needed
+
+      # Step 3: Install dependencies (Selenium and WebDriver)
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install selenium
+          sudo apt-get install -y chromium-browser
+
+      # Step 4: Run the Selenium script
+      - name: Run Selenium script
+        run: |
+          # Run the script with the necessary environment variables
+          DISPLAY=:99.0 python selenium_script.py
+        env:
+          # Set up the environment variable for the headless browser
+          DISPLAY: :99
+          CHROME_BIN: /usr/bin/chromium-browser
+          CHROME_DRIVER: /usr/lib/chromium-browser/chromedriver
