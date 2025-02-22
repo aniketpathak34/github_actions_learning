@@ -25,7 +25,7 @@ jobs:
 
       - name: Run Selenium script
         run: |
-          DISPLAY=:99.0 python selenium_script.py
+          DISPLAY=:99.0 python gsearch.py
         env:
           DISPLAY: :99
           CHROME_BIN: /usr/bin/chromium-browser
