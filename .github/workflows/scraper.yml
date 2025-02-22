@@ -1,8 +1,6 @@
 name: Run Scraper Every 5 Minutes
 
 on:
-  schedule:
-    - cron: ' * * * *'  # This cron expression runs the workflow every 5 minutes
   # You can also manually trigger it if needed (optional)
   workflow_dispatch:
 
