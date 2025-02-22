@@ -9,18 +9,18 @@ import os
 # Automatically install ChromeDriver if it's not present
 chromedriver_autoinstaller.install()
 
-# Check if chromedriver is installed correctly
-chromedriver_path = os.path.join(os.getcwd(), "chromedriver")
-if not os.path.exists(chromedriver_path):
-    print("Chromedriver is not installed correctly.")
-    exit(1)
+# Path to the Chrome binary (needed for headless Chrome)
+chrome_binary_path = "/usr/bin/google-chrome-stable"
 
 # Set up Chrome options to run headlessly
 chrome_options = Options()
 chrome_options.add_argument("--headless")  # Run in headless mode (no GUI)
+chrome_options.add_argument("--no-sandbox")  # Needed for some environments (like CI)
+chrome_options.add_argument("--disable-dev-shm-usage")  # Needed for some environments (like CI)
+chrome_options.binary_location = chrome_binary_path  # Explicitly set Chrome binary location
 
 # Set up the WebDriver
-service = Service(chromedriver_path)
+service = Service("chromedriver")
 driver = webdriver.Chrome(service=service, options=chrome_options)
 
 def scrape_website():
