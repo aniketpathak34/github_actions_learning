@@ -18,4 +18,4 @@ repositories = soup.find_all('h1', {'class': 'h3 lh-condensed'})
 for repo in repositories:
     repo_name = repo.get_text(strip=True)
     repo_url = 'https://github.com' + repo.find('a')['href']
-    print(f"{repo_name}: {repo_url}")
+    print(f"{repo_name}: {repo_url}---------------------------------------output")
